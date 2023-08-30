@@ -1,6 +1,9 @@
 # mosquitto-go-auth-example
 docker files for test mosquitto-go-auth DB authentication.
 
+This is ACL(Access Control) disabled version.
+If you want ACL, see [acl branch](https://github.com/yosukeueda33/mosquitto-go-auth-example/tree/acl).
+
 [mosquitto-go-auth](https://github.com/iegomez/mosquitto-go-auth#hashing) is a plug-in of mosquitto MQTT broker.  
 It provides [docker image](https://hub.docker.com/r/iegomez/mosquitto-go-auth) also. This env uses it.
 
