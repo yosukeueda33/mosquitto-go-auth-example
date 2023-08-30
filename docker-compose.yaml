@@ -30,4 +30,5 @@ services:
       - "21883:1883"
     depends_on:
       - postgres
+    restart: on-failure
 
