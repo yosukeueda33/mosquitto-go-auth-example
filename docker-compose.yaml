@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    build:
+      context: ./postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    ports:
+      - "25432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "28080:80"
+    depends_on:
+      - postgres
+
+  mosquitto:
+    build:
+        context: ./mosquitto
+    volumes:
+      - ./mosquitto-conf:/etc/mosquitto
+    ports:
+      - "21883:1883"
+    depends_on:
+      - postgres
+
