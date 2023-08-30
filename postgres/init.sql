@@ -8,7 +8,7 @@ CREATE TABLE acl (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   topic VARCHAR(255) NOT NULL,
-  rw INTEGER CHECK (rw IN (0, 1, 2, 3)) NOT NULL,
+  rw INTEGER NOT NULL,
   FOREIGN KEY (username) REFERENCES app_user(username) ON DELETE CASCADE
 );
 
@@ -26,6 +26,8 @@ INSERT INTO app_user (username, hash) VALUES (
     '$2y$10$D4RLlLWqb/vpSLQyYM98t.UOxCcYsHcfSHLZ2a7A4HsyRYhQsXIli'
     ); -- htpasswd -bnBC 10 "" password3 | tr -d ':\n'
 
-INSERT INTO acl (username, topic, rw) VALUES ('user1', 'topic1', 1);
-INSERT INTO acl (username, topic, rw) VALUES ('user2', 'topic1', 1);
-INSERT INTO acl (username, topic, rw) VALUES ('user3', 'topic1', 3);
+INSERT INTO acl (username, topic, rw) VALUES ('user1', 'topic1', 4); --subscribe
+INSERT INTO acl (username, topic, rw) VALUES ('user1', 'topic1', 1); --read
+INSERT INTO acl (username, topic, rw) VALUES ('user2', 'topic1', 4); --subscribe
+INSERT INTO acl (username, topic, rw) VALUES ('user2', 'topic1', 1); --read
+INSERT INTO acl (username, topic, rw) VALUES ('user3', 'topic1', 2); --write
